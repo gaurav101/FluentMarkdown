@@ -1,4 +1,4 @@
-package io.fluentmarkdown;
+package io.github.gaurav101.fluentmarkdown;
 
 /**
  * Factory methods for built-in CSS-framework presets.

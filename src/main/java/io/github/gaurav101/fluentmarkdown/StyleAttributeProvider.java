@@ -1,4 +1,4 @@
-package io.fluentmarkdown;
+package io.github.gaurav101.fluentmarkdown;
 
 import org.commonmark.node.Node;
 import org.commonmark.renderer.html.AttributeProvider;

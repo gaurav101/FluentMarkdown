@@ -57,7 +57,7 @@ Then add this dependency to your project's `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>io.fluentmarkdown</groupId>
+    <groupId>io.github.gaurav101.fluentmarkdown</groupId>
     <artifactId>fluentmarkdown</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -65,7 +65,7 @@ Then add this dependency to your project's `pom.xml`:
 
 ### Option B — Copy the source into your project
 
-The library is only four files. You can copy the `io/fluentmarkdown` package directly into your `src/main/java` directory and add `commonmark` to your own `pom.xml`:
+The library is only four files. You can copy the `io/io.github.gaurav101/fluentmarkdown` package directly into your `src/main/java` directory and add `commonmark` to your own `pom.xml`:
 
 ```xml
 <dependency>
@@ -80,32 +80,32 @@ The library is only four files. You can copy the `io/fluentmarkdown` package dir
 ## Quick Start
 
 ```java
-import io.fluentmarkdown.Markdown;
+import io.github.gaurav101.fluentmarkdown.Markdown;
 
 public class Example {
-    public static void main(String[] args) {
-        String markdown = """
-                # Hello, FluentMarkdown!
+  public static void main(String[] args) {
+    String markdown = """
+            # Hello, FluentMarkdown!
+            
+            This is a **bold** statement with a [link](https://example.com).
+            
+            > A styled blockquote.
+            
+            - Item one
+            - Item two
+            """;
 
-                This is a **bold** statement with a [link](https://example.com).
+    // Tailwind CSS output
+    String tailwindHtml = Markdown.from(markdown).withTailwind().toHtml();
 
-                > A styled blockquote.
+    // Bootstrap 5 output
+    String bootstrapHtml = Markdown.from(markdown).withBootstrap().toHtml();
 
-                - Item one
-                - Item two
-                """;
+    // Plain HTML (no CSS classes)
+    String plainHtml = Markdown.from(markdown).toHtml();
 
-        // Tailwind CSS output
-        String tailwindHtml = Markdown.from(markdown).withTailwind().toHtml();
-
-        // Bootstrap 5 output
-        String bootstrapHtml = Markdown.from(markdown).withBootstrap().toHtml();
-
-        // Plain HTML (no CSS classes)
-        String plainHtml = Markdown.from(markdown).toHtml();
-
-        System.out.println(tailwindHtml);
-    }
+    System.out.println(tailwindHtml);
+  }
 }
 ```
 
@@ -166,14 +166,14 @@ String html = Markdown.from(markdown).withBulma().toHtml();
 Create a `StyleConfig` with `StyleConfig.builder()` and map any HTML tag name to a string of CSS classes.
 
 ```java
-import io.fluentmarkdown.Markdown;
-import io.fluentmarkdown.StyleConfig;
+import io.github.gaurav101.fluentmarkdown.Markdown;
+import io.github.gaurav101.fluentmarkdown.StyleConfig;
 
 StyleConfig myConfig = StyleConfig.builder()
         .tag("h1", "page-title")
         .tag("h2", "section-title")
-        .tag("p",  "body-text")
-        .tag("a",  "link link--primary")
+        .tag("p", "body-text")
+        .tag("a", "link link--primary")
         .tag("code", "inline-code")
         .build();
 
@@ -189,14 +189,14 @@ Tags that are **not** listed in your config are rendered without a `class` attri
 Use `mergeFrom()` to start from a preset and then change specific tags:
 
 ```java
-import io.fluentmarkdown.Markdown;
-import io.fluentmarkdown.Presets;
-import io.fluentmarkdown.StyleConfig;
+import io.github.gaurav101.fluentmarkdown.Markdown;
+import io.github.gaurav101.fluentmarkdown.Presets;
+import io.github.gaurav101.fluentmarkdown.StyleConfig;
 
 StyleConfig custom = StyleConfig.builder()
         .mergeFrom(Presets.tailwind())          // start from the Tailwind preset
-        .tag("p",  "mb-6 text-gray-700 text-lg leading-loose")  // override paragraph
-        .tag("a",  "text-indigo-600 underline") // override link
+        .tag("p", "mb-6 text-gray-700 text-lg leading-loose")  // override paragraph
+        .tag("a", "text-indigo-600 underline") // override link
         .tag("table", "w-full text-sm")         // override table
         .build();
 

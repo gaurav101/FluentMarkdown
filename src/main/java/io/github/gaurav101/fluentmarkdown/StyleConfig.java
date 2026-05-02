@@ -1,4 +1,4 @@
-package io.fluentmarkdown;
+package io.github.gaurav101.fluentmarkdown;
 
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package io.fluentmarkdown;
+package io.github.gaurav101.fluentmarkdown;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
