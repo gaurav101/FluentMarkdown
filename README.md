@@ -6,6 +6,16 @@ A lightweight, zero-boilerplate Java library that converts Markdown to **styled 
 String html = Markdown.from(text).withTailwind().toHtml();
 ```
 
+[Install form maven](https://central.sonatype.com/artifact/io.github.gaurav101/fluentmarkdown)
+
+```xml
+<dependency>
+    <groupId>io.github.gaurav101</groupId>
+    <artifactId>fluentmarkdown</artifactId>
+    <version>1.0.4</version>
+</dependency>
+```
+
 ---
 
 ## Table of Contents

@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.gaurav101.fluentMarkdown</groupId>
+    <groupId>io.github.gaurav101</groupId>
     <artifactId>fluentmarkdown</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
 
     <name>FluentMarkdown</name>
