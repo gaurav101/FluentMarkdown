@@ -54,12 +54,12 @@ String html = Markdown.from(text).withTailwind().toHtml();
 
 ## Installation
 
-### Option A — Add the JAR via Maven (local install)
+### Option A — Add the JAR via Maven
 
 If you haven't published the library to a remote repository, first install it into your local Maven cache:
 
 ```bash
-cd FluentMarkdown
+cd <project-name>
 mvn install
 ```
 
@@ -67,9 +67,9 @@ Then add this dependency to your project's `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>io.github.gaurav101.fluentmarkdown</groupId>
-    <artifactId>fluentmarkdown</artifactId>
-    <version>1.0.0</version>
+  <groupId>io.github.gaurav101</groupId>
+  <artifactId>fluentmarkdown</artifactId>
+  <version>1.0.4</version>
 </dependency>
 ```
 
@@ -343,7 +343,7 @@ HtmlRenderer renderer = HtmlRenderer.builder()
 ## Project Structure
 
 ```
-FluentMarkdown/
+fluentmarkdown/
 ├── pom.xml
 └── src/
     ├── main/java/io/fluentmarkdown/
@@ -361,7 +361,7 @@ FluentMarkdown/
 
 ```bash
 # Clone or download the project, then:
-cd FluentMarkdown
+cd fluentmarkdown
 
 # Compile, run tests, and package the JAR
 mvn install
@@ -403,7 +403,7 @@ Yes. Install the JAR locally with `mvn install`, then add the dependency:
 ```groovy
 // build.gradle
 dependencies {
-    implementation 'io.fluentmarkdown:fluentmarkdown:1.0.0'
+  implementation("io.github.gaurav101:fluentmarkdown:1.0.4")
 }
 ```
 
