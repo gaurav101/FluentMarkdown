@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.gaurav101</groupId>
+    <groupId>io.github.gaurav101.fluentMarkdown</groupId>
     <artifactId>fluentmarkdown</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>FluentMarkdown</name>
@@ -16,6 +16,31 @@
         A lightweight, reusable Java library that wraps commonmark-java to produce
         CSS-framework-styled HTML via a fluent builder API.
     </description>
+
+    <url>https://github.com/gaurav101/FluentMarkdown</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>gaurav101</id>
+            <name>Gaurav Kumar Singh</name>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/gaurav101/FluentMarkdown.git</connection>
+        <developerConnection>scm:git:ssh://github.com:gaurav101/fluentmarkdown.git</developerConnection>
+        <url>https://github.com/gaurav101/FluentMarkdown
+            /tree/main</url>
+    </scm>
+
+
 
     <properties>
         <java.version>17</java.version>
@@ -27,22 +52,17 @@
     </properties>
 
     <dependencies>
-
-        <!-- ── Core (only required runtime dependency) ── -->
         <dependency>
             <groupId>org.commonmark</groupId>
             <artifactId>commonmark</artifactId>
             <version>${commonmark.version}</version>
         </dependency>
-
-        <!-- ── Test scope only ── -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -52,19 +72,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.12.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-            </plugin>
-
-            <!-- Produce a sources jar alongside the main artifact -->
+            <!-- ⑤ Sources JAR — required by Central -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -75,6 +85,56 @@
                         <goals><goal>jar-no-fork</goal></goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- ⑥ Javadoc JAR — required by Central -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ⑦ GPG signing — required by Central -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals><goal>sign</goal></goals>
+                        <configuration>
+                            <!-- Prevents GPG from opening a passphrase popup in CI -->
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ⑧ Central publishing plugin -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.9.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- Must match the <id> in ~/.m2/settings.xml exactly -->
+                    <publishingServerId>central</publishingServerId>
+                    <!-- true  = release immediately after validation -->
+                    <!-- false = stay in "pending" so you can review first -->
+                    <autoPublish>false</autoPublish>
+                    <waitUntil>validated</waitUntil>
+                </configuration>
             </plugin>
 
         </plugins>
